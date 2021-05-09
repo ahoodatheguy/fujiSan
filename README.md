@@ -11,8 +11,9 @@ However, one area where I noticed a profound *lack* of open source software is d
 - [ ] Moderation
   - [x] kick users
   - [x] ban/unban users
+  - [x] clearing messages
   - [ ] blacklisted words
-  - [ ] profanity filter
+  - [ ] anti spam
   - [ ] Roles
     - [ ] promotions
     - [ ] demotions
