@@ -3,7 +3,7 @@ import discord #discord library
 from discord.ext import commands #commands
 
 
-TOKEN = "YOUR TOKEN HERE"
+TOKEN = "ODMyMzcwODE5OTkyNzgwODEw.YHizvA.QfC5M_1WkPPn6obA4W2ekqGQIHs"
 
 #Client
 client = commands.Bot(command_prefix="!") #the discord bot, also sets a prefix as !
@@ -87,7 +87,7 @@ async def kick(context, user : discord.Member,*, reason = "reason not given"):
 @client.command(name = "clear")
 @commands.has_permissions(manage_messages=True)
 async def clear(context, amount=5):
-    print(str(author) + " cleared " +  str(amount) + " messages")
+    print(str(context.author) + " cleared " +  str(amount) + " messages")
     await context.channel.purge(limit = amount + 1)
     
 @client.command(name = "help")
