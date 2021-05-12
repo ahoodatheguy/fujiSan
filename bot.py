@@ -3,10 +3,13 @@ import discord #discord library
 from discord.ext import commands #commands
 
 
-TOKEN = "ODMyMzcwODE5OTkyNzgwODEw.YHizvA.QfC5M_1WkPPn6obA4W2ekqGQIHs"
-
+TOKEN = "YOUR TOKEN HERE"
+GITHUB = "https://www.github.com/ahoodatheguy/fujiSan"
+VERSION = "Beta 1.1.2"
+TWITTER = "https://twitter.com/freeahooda"
+YOUTUBE = "youtube.com/channel/UCGcwxAVTRuHmrFrI8cwiC3Q"
 #Client
-client = commands.Bot(command_prefix="!") #the discord bot, also sets a prefix as !
+client = commands.Bot(command_prefix="!") #the discord bot, also sets prefix
 client.remove_command("help") #unbinds the default help command for us to use
 
 
@@ -14,7 +17,7 @@ client.remove_command("help") #unbinds the default help command for us to use
 async def on_ready(): #Excecute when bot joins server
     print("Bot is running!")
 
-
+VERSION
 
 @client.event
 async def on_disconnect():
@@ -26,23 +29,23 @@ async def on_disconnect():
 async def aboutme(context):
     print("bot info was requested")
     aboutEmbed = discord.Embed(title="Fuji-San", description="A work in progress discord bot.", color=0xffb7c5) #basic embed structure. color is self explanatory. make sure to use hexadecimal code.
-    aboutEmbed.add_field(name="Github: ", value="https://www.github.com/ahoodatheguy/fujiSan", inline=False)
-    aboutEmbed.add_field(name="Version:", value="Beta v1.0.5", inline=False)
-    aboutEmbed.set_author(name="ahoodatheguy", url="https://twitter.com/freeahooda", icon_url="https://pbs.twimg.com/profile_images/1369100469075853314/cjg-yHFL_400x400.jpg")
+    aboutEmbed.add_field(name="Github: ", value=GITHUB, inline=False)
+    aboutEmbed.add_field(name="Version:", value=VERSION, inline=False)
+    aboutEmbed.set_author(name="ahoodatheguy", url=TWITTER, icon_url="https://pbs.twimg.com/profile_images/1369100469075853314/cjg-yHFL_400x400.jpg")
     aboutEmbed.set_footer(text="ありがとう")
     channel = context.message.channel #assigns the channel where the message is sent to variable channel
     await context.reply(embed=aboutEmbed) #send embed
 
-@client.command(name="socials") 
+@client.command(name="socials")
 async def credits(context):
     print("Socials were requested")
     channel = context.message.channel
-    socialsEmbed = discord.Embed(title="Social Media", description="You can find me here.", color=0x00ff00ffb7c5)
+    socialsEmbed = discord.Embed(title="Social Media", description="You can find me here.", color=0xffb7c5)
     #Replace my socials with yours
     socialsEmbed.add_field(name="Twitch:", value="twitch.tv/ahoodatheguy", inline=False)
     socialsEmbed.add_field(name="Twitter:", value="twitter.com/freeahooda", inline=False)
-    socialsEmbed.add_field(name="Youtube:", value="youtube.com/channel/UCGcwxAVTRuHmrFrI8cwiC3Q")
-    await channel.send(embed=socialsEmbed)
+    socialsEmbed.add_field(name="Youtube:", value=YOUTUBE)
+    await context.reply(embed=socialsEmbed)
 
 @client.command(name="ban")
 @commands.has_permissions(ban_members=True)
@@ -65,7 +68,7 @@ async def unban(context,*, user):
 
     for banned in bannedUsers:
         user = banned.user
-        
+
         if (user.name, user.discriminator) == (dName, dDiscriminator):
             await context.guild.unban(user)
             print(user.name + user.discriminator + " was unbanned")
@@ -89,7 +92,7 @@ async def kick(context, user : discord.Member,*, reason = "reason not given"):
 async def clear(context, amount=5):
     print(str(context.author) + " cleared " +  str(amount) + " messages")
     await context.channel.purge(limit = amount + 1)
-    
+
 @client.command(name = "help")
 async def help(context):
 
@@ -98,7 +101,7 @@ async def help(context):
     helpEmbed.add_field(name = "help", value = "sends this dialouge", inline = False)
     helpEmbed.add_field(name = "socials", value = "prints socials specified by the moderator", inline = False)
     helpEmbed.add_field(name = "aboutme", value = "get information about the bot and it's creator", inline = False)
-    
+
     #elif statements werent working.
     if commands.has_permissions(manage_messages = True):
         helpEmbed.add_field(name = "clear <amount>", value = "deletes specified amount of messages (default = 5)", inline = False)
@@ -111,4 +114,3 @@ async def help(context):
     await context.reply(embed=helpEmbed)
 # Connect to server and run bot
 client.run(TOKEN)
-
