@@ -4,7 +4,7 @@ import os
 from discord.ext import commands #commands
 
 
-TOKEN = "YOUR TOKEN HERE"
+TOKEN = "ODMyMzcwODE5OTkyNzgwODEw.YHizvA.MijZwi87aJZCcg3XT8wa3GtiaMM"
 GITHUB = "https://www.github.com/ahoodatheguy/fujiSan"
 VERSION = "Beta 1.1.2"
 TWITTER = "https://twitter.com/freeahooda"
@@ -55,25 +55,5 @@ async def credits(context):
     socialsEmbed.add_field(name="Youtube:", value=YOUTUBE)
     await context.reply(embed=socialsEmbed)
 
-
-@client.command(name = "help")
-async def help(context):
-
-    print("help was requested")
-    helpEmbed = discord.Embed(title="Fuji-San commands", description="Commands that you can use in this server", color=0xffb7c5)
-    helpEmbed.add_field(name = "help", value = "sends this dialouge", inline = False)
-    helpEmbed.add_field(name = "socials", value = "prints socials specified by the moderator", inline = False)
-    helpEmbed.add_field(name = "aboutme", value = "get information about the bot and it's creator", inline = False)
-
-    #elif statements werent working.
-    if commands.has_permissions(manage_messages = True):
-        helpEmbed.add_field(name = "clear <amount>", value = "deletes specified amount of messages (default = 5)", inline = False)
-    if commands.has_permissions(ban_members = True):
-        helpEmbed.add_field(name = "ban <user>", value = "ban specified user", inline = False)
-        helpEmbed.add_field(name = "vindicate <user#12345>", value = "unban specified user", inline = False)
-    if commands.has_permissions(kick_members = True):
-        helpEmbed.add_field(name = "kick <user>", value = "kick specified user", inline = False)
-
-    await context.reply(embed=helpEmbed)
 # Connect to server and run bot
 client.run(TOKEN)
