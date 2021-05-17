@@ -4,7 +4,7 @@ import os
 from discord.ext import commands #commands
 
 
-TOKEN = "ODMyMzcwODE5OTkyNzgwODEw.YHizvA.MijZwi87aJZCcg3XT8wa3GtiaMM"
+TOKEN = "YOUR TOKEN HERE"
 GITHUB = "https://www.github.com/ahoodatheguy/fujiSan"
 VERSION = "Beta 1.1.2"
 TWITTER = "https://twitter.com/freeahooda"
