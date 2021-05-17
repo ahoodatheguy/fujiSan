@@ -1,5 +1,6 @@
 # packages
 import discord #discord library
+import os
 from discord.ext import commands #commands
 
 
@@ -8,6 +9,7 @@ GITHUB = "https://www.github.com/ahoodatheguy/fujiSan"
 VERSION = "Beta 1.1.2"
 TWITTER = "https://twitter.com/freeahooda"
 YOUTUBE = "youtube.com/channel/UCGcwxAVTRuHmrFrI8cwiC3Q"
+TWITCH = "twitch.tv/ahoodatheguy"
 #Client
 client = commands.Bot(command_prefix="!") #the discord bot, also sets prefix
 client.remove_command("help") #unbinds the default help command for us to use
@@ -16,13 +18,19 @@ client.remove_command("help") #unbinds the default help command for us to use
 @client.event
 async def on_ready(): #Excecute when bot joins server
     print("Bot is running!")
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+            try:
+                client.load_extension(f'cogs.{filename[:-3]}')
+                print(f'cog {filename} loaded')
+            except Exception as e:
+                print(f'Failed to load {filename}')
+                print(e)
 
-VERSION
 
 @client.event
 async def on_disconnect():
     print("bot has disconnected")
-
 
 #aboutme command
 @client.command(name="aboutme") #run run if prefix + "aboutme" is sent
@@ -42,56 +50,11 @@ async def credits(context):
     channel = context.message.channel
     socialsEmbed = discord.Embed(title="Social Media", description="You can find me here.", color=0xffb7c5)
     #Replace my socials with yours
-    socialsEmbed.add_field(name="Twitch:", value="twitch.tv/ahoodatheguy", inline=False)
-    socialsEmbed.add_field(name="Twitter:", value="twitter.com/freeahooda", inline=False)
+    socialsEmbed.add_field(name="Twitch:", value=TWITCH, inline=False)
+    socialsEmbed.add_field(name="Twitter:", value=TWITTER, inline=False)
     socialsEmbed.add_field(name="Youtube:", value=YOUTUBE)
     await context.reply(embed=socialsEmbed)
 
-@client.command(name="ban")
-@commands.has_permissions(ban_members=True)
-async def ban(context,user : discord.Member,*,reason= "reason not given"): #Ban user and tell the chat
-    channel = context.message.channel
-    await user.ban(reason=reason)
-    if reason == "reason not given":
-        print("user " + str(user) + " was banned")
-        await channel.send(str(user) + " has been banned")
-    else:
-        await channel.send(str(user) + " has been banned for " + str(reason))
-        print("user " + str(user) + " was banned for " + str(reason))
-
-@client.command(name = "vindicate") #unban a user
-@commands.has_permissions(ban_members=True)
-async def unban(context,*, user):
-    channel = context.message.channel
-    bannedUsers = await context.guild.bans()
-    dName, dDiscriminator = user.split('#')
-
-    for banned in bannedUsers:
-        user = banned.user
-
-        if (user.name, user.discriminator) == (dName, dDiscriminator):
-            await context.guild.unban(user)
-            print(user.name + user.discriminator + " was unbanned")
-            await channel.send("user " + str(user) + " was unbanned")
-@client.command(name="kick")
-@commands.has_permissions(kick_members=True)
-async def kick(context, user : discord.Member,*, reason = "reason not given"):
-    channel = context.message.channel
-    await user.kick(reason=reason)
-    if reason == "reason not given":
-        print("user " + str(user) + " was kicked")
-        await channel.send(str(user) + " was kicked.")
-    else:
-        print("user " + str(user) + " was kicked")
-        await channel.send(str(user) + " was kicked for " + str(reason))
-
-
-
-@client.command(name = "clear")
-@commands.has_permissions(manage_messages=True)
-async def clear(context, amount=5):
-    print(str(context.author) + " cleared " +  str(amount) + " messages")
-    await context.channel.purge(limit = amount + 1)
 
 @client.command(name = "help")
 async def help(context):
