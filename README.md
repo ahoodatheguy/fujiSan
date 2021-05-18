@@ -1,7 +1,3 @@
-# Note of Caution ⚠️
-This branch is **experimental**, while I do my best to keep everything working, there are no guarentees.
-
-
 # fujiSan
 A discord bot made to moderate servers
 
