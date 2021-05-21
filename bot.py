@@ -5,11 +5,7 @@ from discord.ext import commands #commands
 
 
 TOKEN = "YOUR TOKEN HERE"
-GITHUB = "https://www.github.com/ahoodatheguy/fujiSan"
-VERSION = "Beta 1.2.0"
-TWITTER = "https://twitter.com/freeahooda"
-YOUTUBE = "youtube.com/channel/UCGcwxAVTRuHmrFrI8cwiC3Q"
-TWITCH = "twitch.tv/ahoodatheguy"
+
 #Client
 client = commands.Bot(command_prefix="!") #the discord bot, also sets prefix
 client.remove_command("help") #unbinds the default help command for us to use
