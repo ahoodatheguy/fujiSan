@@ -2,9 +2,10 @@
 import discord #discord library
 import os
 from discord.ext import commands #commands
+import json
 
-
-TOKEN = "YOUR TOKEN HERE"
+bot_info = open("bot_info.json", "r")
+info = json.load(bot_info)
 
 #Client
 client = commands.Bot(command_prefix="!") #the discord bot, also sets prefix
@@ -24,4 +25,4 @@ async def on_ready(): #Excecute when bot joins server
 				print(e)
 
 # Connect to server and run bot
-client.run(TOKEN)
+client.run(info["TOKEN"])
