@@ -4,7 +4,7 @@ import os
 from discord.ext import commands #commands
 import json
 
-bot_info = open("bot_info.json", "r")
+bot_info = open("jsons/bot_info.json", "r")
 info = json.load(bot_info)
 
 #Client
