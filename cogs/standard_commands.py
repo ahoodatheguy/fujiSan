@@ -4,11 +4,11 @@ from discord.ext import commands
 import json
 
 # Get Version number of bot.
-bot_info = open('bot_info.json')
+bot_info = open('jsons/bot_info.json')
 info = json.load(bot_info)
 
 # Get social media handles
-social_medias_json = open('cogs/socials.json')
+social_medias_json = open('jsons/socials.json')
 social_medias = json.load(social_medias_json)
 
 class standard(commands.Cog):
@@ -37,10 +37,10 @@ class standard(commands.Cog):
 	@commands.command()
 	async def aboutme(self, context):
 		print('bot info was requested')
-		aboutEmbed = discord.Embed = discord.Embed(title='Fuji-San', description='A work in progress discord bot', color=0xffb7c5)
-		aboutEmbed.add_field(name='Github: ', value=social_medias['GITHUB'], inline=False)
+		aboutEmbed = discord.Embed = discord.Embed(title='Fuji-San', description=info['DESCRIPTION'], color=0xffb7c5)
+		aboutEmbed.add_field(name='Github: ', value='https://github.com/ahoodatheguy/fujiSan', inline=False)
 		aboutEmbed.add_field(name='Version: ', value=info['VERSION'], inline=False)
-		aboutEmbed.set_author(name='ahoodatheguy', url=social_medias['TWITTER'], icon_url='https://pbs.twimg.com/profile_images/1369100469075853314/cjg-yHFL_400x400.jpg')
+		aboutEmbed.set_author(name='ahoodatheguy', url='https://twitter.com/freeahooda', icon_url='https://pbs.twimg.com/profile_images/1369100469075853314/cjg-yHFL_400x400.jpg')
 		aboutEmbed.set_footer(text='ありがとう')
 		await context.reply(embed=aboutEmbed)
 

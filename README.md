@@ -35,4 +35,5 @@ The steps to do this is quite simple.
   - Make sure you have python installed
   - `pip3 install discord`
 - `cd` into git repo you just cloned.
+- Replace variables in .json files with your own respective info.
 -  run `python3 bot.py` in your terminal
