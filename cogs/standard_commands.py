@@ -4,12 +4,10 @@ from discord.ext import commands
 import json
 
 # Get Version number of bot.
-bot_info = open('jsons/bot_info.json')
+bot_info = open('jsons/bot_info.json', 'r')
 info = json.load(bot_info)
 
-# Get social media handles
-social_medias_json = open('jsons/socials.json')
-social_medias = json.load(social_medias_json)
+
 
 class standard(commands.Cog):
 	def __init__(self, client):
@@ -31,6 +29,12 @@ class standard(commands.Cog):
 			helpEmbed.add_field(name='vindicate <user#12345>', value='unban specified user', inline=False)
 		if commands.has_permissions(kick_members=True):
 			helpEmbed.add_field(name = 'kick <user>', value='kick specified user', inline=False)
+		if commands.has_permissions(manage_guild=True):
+			helpEmbed.add_field(name = 'settwitter <twitter>', value='set twitter value for socials command')
+		if commands.has_permissions(manage_guild=True):
+			helpEmbed.add_field(name = 'settwitch <twitch>', value='set twitch value for socials command')
+		if commands.has_permissions(manage_guild=True):
+			helpEmbed.add_field(name = 'setyoutube <youtube>', value='set youube value for socials command')
 		await context.reply(embed=helpEmbed)
 
 	# about me command
@@ -47,6 +51,9 @@ class standard(commands.Cog):
 	# socials command
 	@commands.command()
 	async def socials(self, context):
+		socials_file = open('jsons/socials.json', 'r')
+		social_medias = json.load(socials_file)
+		
 		print('socials were requested')
 		socialsEmbed = discord.Embed(title='Social Media: ', description='You can find me here.', color=0xffb7c5)
 		#Replace my socials with yours

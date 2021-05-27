@@ -1,6 +1,7 @@
 # packages
 import discord #discord library
 import os
+from discord.errors import LoginFailure
 from discord.ext import commands #commands
 import json
 
@@ -25,4 +26,7 @@ async def on_ready(): #Excecute when bot joins server
 				print(e)
 
 # Connect to server and run bot
-client.run(info["TOKEN"])
+try:
+	client.run(info["TOKEN"])
+except LoginFailure:
+	print('Failed to login, check if your token is valid')
