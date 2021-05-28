@@ -30,11 +30,11 @@ class standard(commands.Cog):
 		if commands.has_permissions(kick_members=True):
 			helpEmbed.add_field(name = 'kick <user>', value='kick specified user', inline=False)
 		if commands.has_permissions(manage_guild=True):
-			helpEmbed.add_field(name = 'settwitter <twitter>', value='set twitter value for socials command')
+			helpEmbed.add_field(name = 'settwitter https://<twitter>', value='set twitter value for socials command')
 		if commands.has_permissions(manage_guild=True):
-			helpEmbed.add_field(name = 'settwitch <twitch>', value='set twitch value for socials command')
+			helpEmbed.add_field(name = 'settwitch https://<twitch>', value='set twitch value for socials command')
 		if commands.has_permissions(manage_guild=True):
-			helpEmbed.add_field(name = 'setyoutube <youtube>', value='set youube value for socials command')
+			helpEmbed.add_field(name = 'setyoutube https://<youtube>', value='set youube value for socials command')
 		await context.reply(embed=helpEmbed)
 
 	# about me command
